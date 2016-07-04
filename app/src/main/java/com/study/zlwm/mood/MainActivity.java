@@ -16,12 +16,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -55,6 +57,52 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         //this.setContentView(R.layout.mood_plan);
+
+        /*setContentView(R.layout.main);
+        // 以findViewById()取得Button对象并添加事件onClickLisener
+        Button button1=(Button)findViewById(R.id.bt1);
+        button1.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goToLayout2();
+
+
+            }});*/
+    }
+ /*   public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        // 以findViewById()取得Button对象并添加事件onClickLisener
+        Button button1=(Button)findViewById(R.id.bt1);
+        button1.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                goToLayout2();
+
+
+            }});
+
+    }*/
+    public void goToLayout2() {
+        // 将layout改成mylayout
+        setContentView(R.layout.mylayout);
+        Button b2 = (Button) findViewById(R.id.bt2);
+        b2.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                goToLayout1();
+            }
+        });
+    }
+    // 将layout由mylayout.xml切换成main.xml
+    public void goToLayout1() {
+        setContentView(R.layout.main);
+        Button bt1 = (Button) findViewById(R.id.bt1);
+        bt1.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                goToLayout2();
+            }
+        });
     }
 
     @Override
@@ -101,13 +149,16 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
         Log.d("lw","进入onNavigation");
         if (id == R.id.my_mood) {
+            //为什么不行，可能因为切换后这个类又设置监听去了，但又没有找到设置监听的对象
             Log.d("lw","R.id.my_mood");
             //View myView = findViewById(R.id.mood_plan_layout);
-            setContentView(R.layout.mood_plan);
+            setContentView(R.layout.main);
 
         } else if (id == R.id.mood_road) {
+            //要找到drawer_layout这个id和内存，才能正常
             setContentView(R.layout.activity_main);
             //LayoutInflater inflator =getLayoutInflater();
            // View view11=inflator.inflate(R.layout.mood_plan, null, false);
@@ -131,9 +182,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.setting) {
 
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        //原来是这里的才是问题，我草
+        //选了之后关闭
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
