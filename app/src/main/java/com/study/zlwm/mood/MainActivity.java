@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +22,12 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private ArrayList<String> fragmentTag=new ArrayList<String>();
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,28 +37,29 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);//AppCompatActivity中的一个方法，包含bar
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+       // FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       // fab.setOnClickListener(new View.OnClickListener() {
+       //     @Override
+        //    public void onClick(View view) {
                 /**
                  * 在屏幕底部显示提示信息
                  */
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+           //     Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+           //             .setAction("Action", null).show();
+          //  }
+        //});
         /**
          * Note that you can only have one drawer view for each vertical edge of the window.
          * If your layout configures more than one drawer view per vertical edge of the window,
          * an exception will be thrown at runtime.
          * 抽屉布局
          */
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //点击的按钮
+       /* DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        toggle.syncState();*/
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -152,40 +159,79 @@ public class MainActivity extends AppCompatActivity
 
         Log.d("lw","进入onNavigation");
         if (id == R.id.my_mood) {
+
             //为什么不行，可能因为切换后这个类又设置监听去了，但又没有找到设置监听的对象
             Log.d("lw","R.id.my_mood");
-            //View myView = findViewById(R.id.mood_plan_layout);
-            setContentView(R.layout.main);
+
+           /* FragmentTransaction mytransaction=showFragment("my_mood");
+            if( mytransaction!=null ){
+
+                Fragment fragment1=new FragmentMyMood();
+                mytransaction.add(R.id.fragment_container,fragment1,"my_mood");
+                fragmentTag.add("my_mood");
+                mytransaction.commit();
+            }*/
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            FragmentMyMood fragment1=new FragmentMyMood();
+            transaction.replace(R.id.fragment_container,fragment1,"my_mood");
+            transaction.commit();
 
         } else if (id == R.id.mood_road) {
-            //要找到drawer_layout这个id和内存，才能正常
-            setContentView(R.layout.activity_main);
-            //LayoutInflater inflator =getLayoutInflater();
-           // View view11=inflator.inflate(R.layout.mood_plan, null, false);
-            //setContentView(R.layout.test);
-            //setContentView(view11);
+
 
         } else if (id == R.id.mood_plan) {
 
-            LayoutInflater myInflate=LayoutInflater.from(this);
-            View myView=myInflate.inflate(R.layout.mood_plan,null);
-           ///setContentView(R.layout.activity_main);
-            //View my1=myView.findViewById(R.id.mood_tv);
-           this.setContentView(myView);
+           /* FragmentTransaction mytransaction=showFragment("mood_plan");
+            if( mytransaction!=null ){
+
+                Fragment fragment1=new FragmentMoodPlan();
+                mytransaction.add(R.id.fragment_container,fragment1,"mood_plan");
+                fragmentTag.add("mood_plan");
+                mytransaction.commit();
+            }*/
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            FragmentMoodPlan fragment1=new FragmentMoodPlan();
+            transaction.replace(R.id.fragment_container,fragment1,"mood_plan");
+            transaction.commit();
 
         } else if (id == R.id.good_mood) {
-            //this.setContentView(R.layout.mood_plan);
 
         } else if (id == R.id.night) {
-            //setContentView(R.layout.content_main);
 
         } else if (id == R.id.setting) {
 
         }
         //原来是这里的才是问题，我草
         //选了之后关闭
-        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //drawer.closeDrawer(GravityCompat.START);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    /*private FragmentTransaction showFragment(String tag)
+    {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        for (String tmp:fragmentTag)
+        {
+            Fragment fragment1=manager.findFragmentByTag(tmp);
+            transaction.hide(fragment1);
+        }
+
+        if(fragmentTag.contains(tag))
+        {
+            Fragment fragment1=manager.findFragmentByTag(tag);
+            transaction.show(fragment1);
+            transaction.commit();
+            return null;
+        }
+        else
+        {
+            return transaction;
+        }
+
+    }*/
 }

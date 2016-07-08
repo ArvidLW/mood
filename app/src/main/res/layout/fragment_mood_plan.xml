@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+             />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--title-->
+        <LinearLayout
+            android:id="@+id/mood_title"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/mood_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="星期一"
+                android:gravity="center" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="建设性"
+                android:layout_marginLeft="40dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="编辑"
+                android:layout_marginLeft="40dp"/>
+
+        </LinearLayout>
+
+        <!--content-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="双休日里你做了什么，想了什么，主题心情又是怎样的，这都不是问题的关键所在，重要的是，你要学会采用一种建设性思维去对待未来一周的第一个工作日。如果你是100%的上班族的话，尤其要注意正确区分工作与休闲的界限，不要沉溺于一些无谓的情绪之中。星期一早上出门之前，你可以这么告诉自己：新的工作正在等着我，从现在开始，收起昨天的喜怒哀乐，调整心态，去迎接各种各样的挑战。"
+            />
+    </LinearLayout>
+
+    <!--星期一-->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <!--title-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="星期一"
+                android:gravity="center" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="建设性"
+                android:layout_marginLeft="40dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="编辑"
+                android:layout_marginLeft="40dp"/>
+
+        </LinearLayout>
+
+        <!--content-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="双休日里你做了什么，想了什么，主题心情又是怎样的，这都不是问题的关键所在，重要的是，你要学会采用一种建设性思维去对待未来一周的第一个工作日。如果你是100%的上班族的话，尤其要注意正确区分工作与休闲的界限，不要沉溺于一些无谓的情绪之中。星期一早上出门之前，你可以这么告诉自己：新的工作正在等着我，从现在开始，收起昨天的喜怒哀乐，调整心态，去迎接各种各样的挑战。"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
