@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by 31351 on 2016/7/5.
+ * Created by lw on 2016/7/5.
  */
 public class FragmentMoodPlan extends Fragment {
     @Nullable
@@ -29,6 +29,8 @@ public class FragmentMoodPlan extends Fragment {
     private String[] weeks =new String[]{"星期一","星期二","星期三","星期四","星期五","星期六","星期天"};
     private String[] tags = new String[]{"淡然","无所谓","坚定","从容","奋斗","青城山","泸沽湖"};
     private String[] simCons = new String[]{"看开看开，风吹裤裆","心有千千节，小事","学习学习……","我的沧海呢","100……","好地方哦","女儿国"};
+    private int[] mytag ={0,0,0,0,0,0,0};
+    //private Map map;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
@@ -53,18 +55,19 @@ public class FragmentMoodPlan extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         listView= (ListView) view.findViewById(R.id.mood_plan_list);
 
-        List<Map<String,Object>> listItems = new ArrayList<Map<String,Object>>();
+        final List<Map<String,Object>> listItems = new ArrayList<>();
         for(int i=0;i<weeks.length;++i)
         {
             Map<String,Object> listItem= new HashMap<>();
             listItem.put("week",weeks[i]);
             listItem.put("tag",tags[i]);
             listItem.put("simCon",simCons[i]);
+            listItem.put("myTag",mytag[i]);
             listItems.add(listItem);
         }
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), listItems, R.layout.mood_plan_item,
-                new String[]{"week","tag","simCon"},
+        final SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), listItems, R.layout.mood_plan_item,
+                new String[]{"week","tag","simCon","myTag"},
                 new int[]{ R.id.week, R.id.moodTag, R.id.moodSimCon} );
         listView.setAdapter(simpleAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -85,7 +88,22 @@ public class FragmentMoodPlan extends Fragment {
                 //View simContent=view.findViewById(R.id.detailInfo);
                 //simContent.setVisibility(View.INVISIBLE);
                 System.out.println(position);
+                System.out.println(id);
+
                 view.setVisibility(View.INVISIBLE);
+                //view.getTextAlignment();
+                //view.set
+                Map ss=(Map)parent.getItemAtPosition(position);
+                String hp=ss.get("myTag").toString();
+                /*if(hp.equals("0"))
+                {
+                    view.setVisibility(View.INVISIBLE);
+
+                }
+                else{
+                    view.setVisibility(View.VISIBLE);
+                }*/
+                System.out.println("刘炜"+hp);
                 Log.d("view",view.toString());
                 //simContent.setMinimumHeight(0);
                 return false;
