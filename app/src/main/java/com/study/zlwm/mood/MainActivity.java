@@ -1,16 +1,11 @@
 package com.study.zlwm.mood;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,8 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.LinearLayout;
+
+import com.study.zlwm.mood.fragment.FragmentMoodPlan;
+import com.study.zlwm.mood.fragment.FragmentMyMood;
 
 import java.util.ArrayList;
 
@@ -28,6 +24,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ArrayList<String> fragmentTag=new ArrayList<String>();
+    private MoodFragmentAdapter moodFragmentAdapter;
+    private ViewPager viewPager;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         //R为类，id为类，toolbar成员变量；JAVA静态内部类访问成员，R.id.toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);//AppCompatActivity中的一个方法，包含bar
+        toolbar.setTitle("我的心情");
         setSupportActionBar(toolbar);
 
        // FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -55,15 +54,16 @@ public class MainActivity extends AppCompatActivity
          * 抽屉布局
          */
         //点击的按钮
-       /* DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
-        toggle.syncState();*/
+        toggle.syncState();/*实现左上角那个点击按钮与抽屉同步*/
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        //this.setContentView(R.layout.mood_plan);
+
+        //this.setContentView(R.layout.activity_main);
 
         /*setContentView(R.layout.main);
         // 以findViewById()取得Button对象并添加事件onClickLisener
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
             }});
 
     }*/
-    public void goToLayout2() {
+    /*public void goToLayout2() {
         // 将layout改成mylayout
         setContentView(R.layout.mylayout);
         Button b2 = (Button) findViewById(R.id.bt2);
@@ -110,14 +110,14 @@ public class MainActivity extends AppCompatActivity
                 goToLayout2();
             }
         });
-    }
+    }*/
 
     @Override
     //当按下返回键时执行程序
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         // void函数要写return,否则会失效，例如这个函数。
-        // 如果抽屉菜单是开着的就关闭
+        // 点击返回建时，如果抽屉菜单是开着的就关闭
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             Log.d("lw","onbackpressed_open");
             drawer.closeDrawer(GravityCompat.START);
@@ -171,14 +171,42 @@ public class MainActivity extends AppCompatActivity
                 fragmentTag.add("my_mood");
                 mytransaction.commit();
             }*/
+            getSupportActionBar().setTitle("我的心情");
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             FragmentMyMood fragment1=new FragmentMyMood();
+            System.out.println("刘炜99999"+fragment1.getView());//为空为啥
             transaction.replace(R.id.fragment_container,fragment1,"my_mood");
             transaction.commit();
 
-        } else if (id == R.id.mood_road) {
+            if(moodFragmentAdapter==null)
+            {
+                moodFragmentAdapter=new MoodFragmentAdapter(getSupportFragmentManager());
+            }
+            System.out.println("刘炜99999"+fragment1.getView());//为空为啥
+            viewPager = (ViewPager) fragment1.getView().findViewById(R.id.view_pager);
+            viewPager.setAdapter(moodFragmentAdapter);
+            viewPager.setCurrentItem(0);
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+
+
+        } else if (id == R.id.mood_road) {
+            getSupportActionBar().setTitle("心历路程");
 
         } else if (id == R.id.mood_plan) {
 
@@ -190,6 +218,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentTag.add("mood_plan");
                 mytransaction.commit();
             }*/
+            getSupportActionBar().setTitle("心情计划");
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             FragmentMoodPlan fragment1=new FragmentMoodPlan();
@@ -197,6 +226,7 @@ public class MainActivity extends AppCompatActivity
             transaction.commit();
 
         } else if (id == R.id.good_mood) {
+            getSupportActionBar().setTitle("心情圈");
 
         } else if (id == R.id.night) {
 
