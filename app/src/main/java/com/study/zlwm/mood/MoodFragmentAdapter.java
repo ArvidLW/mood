@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class MoodFragmentAdapter extends FragmentPagerAdapter {
     private ArrayList<MoodCardFragment> moodcardlist=new ArrayList<>();
+    private ArrayList<String> titleList=new ArrayList<>();
 
     public MoodFragmentAdapter(FragmentManager fm) {
         super(fm);
@@ -25,6 +26,14 @@ public class MoodFragmentAdapter extends FragmentPagerAdapter {
         moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_sad,R.color.darkkhaki));
         moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_satisfied,R.color.orangered));
 
+        titleList.add("1");
+        titleList.add("2");
+        titleList.add("3");
+        titleList.add("4");
+        titleList.add("5");
+        titleList.add("6");
+        titleList.add("7");
+        titleList.add("8");
     }
 
     @Override
@@ -35,5 +44,10 @@ public class MoodFragmentAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return moodcardlist.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titleList.get(position);
     }
 }

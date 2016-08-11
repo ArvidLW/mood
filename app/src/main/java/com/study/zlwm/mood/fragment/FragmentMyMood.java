@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.design.widget.TabLayout;
 
 import com.study.zlwm.mood.MoodFragmentAdapter;
 import com.study.zlwm.mood.R;
@@ -17,6 +18,7 @@ import com.study.zlwm.mood.R;
 public class FragmentMyMood extends Fragment{
     private View view;
     private ViewPager viewPager;
+    private TabLayout tableLayout;
     private MoodFragmentAdapter moodFragmentAdapter;
     @Nullable
     @Override
@@ -29,9 +31,13 @@ public class FragmentMyMood extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewPager= (ViewPager) view.findViewById(R.id.view_pager);
-        moodFragmentAdapter=new MoodFragmentAdapter(getFragmentManager());
+        tableLayout= (TabLayout) view.findViewById(R.id.tabs);
+        tableLayout.setTabMode(TabLayout.MODE_FIXED);
+
+        moodFragmentAdapter=new MoodFragmentAdapter(getChildFragmentManager());
         viewPager.setAdapter(moodFragmentAdapter);
         viewPager.setCurrentItem(0);
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -48,6 +54,8 @@ public class FragmentMyMood extends Fragment{
 
             }
         });
+        tableLayout.setupWithViewPager(viewPager);
+        //tableLayout.setTabsFromPagerAdapter(moodFragmentAdapter);
 
     }
 }
