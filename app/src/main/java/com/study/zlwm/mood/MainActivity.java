@@ -179,32 +179,6 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.fragment_container,fragment1,"my_mood");
             transaction.commit();
 
-            if(moodFragmentAdapter==null)
-            {
-                moodFragmentAdapter=new MoodFragmentAdapter(getSupportFragmentManager());
-            }
-            System.out.println("刘炜99999"+fragment1.getView());//为空为啥
-            viewPager = (ViewPager) fragment1.getView().findViewById(R.id.view_pager);
-            viewPager.setAdapter(moodFragmentAdapter);
-            viewPager.setCurrentItem(0);
-            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                }
-
-                @Override
-                public void onPageSelected(int position) {
-
-                }
-
-                @Override
-                public void onPageScrollStateChanged(int state) {
-
-                }
-            });
-
-
         } else if (id == R.id.mood_road) {
             getSupportActionBar().setTitle("心历路程");
 
