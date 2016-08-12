@@ -18,14 +18,14 @@ public class MoodFragmentAdapter extends FragmentPagerAdapter {
 
     public MoodFragmentAdapter(FragmentManager fm) {
         super(fm);
-        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_afraid,R.color.blueviolet));
-        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_depressed,R.color.gray));
-        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_fidget,R.color.brown));
-        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_happy,R.color.yellow));
-        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_nervous,R.color.royalblue));
-        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_quiet,R.color.cornflowerblue));
-        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_sad,R.color.darkkhaki));
-        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_satisfied,R.color.orangered));
+        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_afraid,R.color.blueviolet,"afraid"));
+        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_depressed,R.color.gray,"depressed"));
+        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_fidget,R.color.brown,"fidget"));
+        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_happy,R.color.yellow,"happy"));
+        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_nervous,R.color.royalblue,"nervous"));
+        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_quiet,R.color.cornflowerblue,"quiet"));
+        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_sad,R.color.darkkhaki,"sad"));
+        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_satisfied,R.color.orangered,"satisfied"));
 
         titleList.add("1");
         titleList.add("2");

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="225dp"
+    android:layout_height="160dp"
+    android:background="@color/gray"
+    android:padding="16dip"
+    android:weightSum="1">
+
+   <com.study.zlwm.mood.redefview.HYSGTextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:textSize="20dp"
+    android:textColor="@color/yellow"
+    android:paddingBottom="10dip"
+    android:id="@+id/tv"
+    android:text="记录下心情吧"
+    />
+    <com.study.zlwm.mood.redefview.HYSGEditText
+        android:id="@+id/myedit"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/textview_border"
+        android:layout_weight="0.6"
+        android:padding="5dp"
+        android:gravity="top"
+        android:textSize="20dp"
+        />
+        <TextView
+            android:id="@+id/yes_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_color_selector"
+            android:text="可以了"
+            android:layout_gravity="center_horizontal"/>
+    <!--<ImageButton
+        android:id="@+id/yes_submit"
+        android:layout_below="@+id/et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/yes"
+        android:layout_gravity="center_horizontal" />-->
+
+</LinearLayout>
+

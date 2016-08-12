@@ -6,25 +6,31 @@
     >
     <ImageView
         android:id="@+id/mood_face"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
         android:src="@drawable/mood_afraid"
         />
     <TextView
+        android:id="@+id/asktext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/mood_face"
-        android:layout_marginBottom="70dp"
         android:layout_centerHorizontal="true"
+        android:layout_below="@id/mood_face"
+        android:layout_marginTop="80dp"
+        android:textSize="20dp"
         android:text="今天你的心情是什么颜色？"/>
     <TextView
         android:id="@+id/plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/mood_face"
+        android:layout_below="@id/asktext"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
+        android:textColor="@color/text_color_selector"
         android:textSize="30dp"
-        android:text="+"/>
+        android:text="…+…"/>
 
 </RelativeLayout>

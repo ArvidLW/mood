@@ -55,7 +55,6 @@ public class FragmentMyMood extends Fragment{
             }
         });
         tableLayout.setupWithViewPager(viewPager);
-        //tableLayout.setTabsFromPagerAdapter(moodFragmentAdapter);
 
     }
 }
