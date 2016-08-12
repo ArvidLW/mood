@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.design.widget.TabLayout;
 
-import com.study.zlwm.mood.MoodFragmentAdapter;
+import com.study.zlwm.mood.adapter.MoodFragmentAdapter;
 import com.study.zlwm.mood.R;
 
 /**

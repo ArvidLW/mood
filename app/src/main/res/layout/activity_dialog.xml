@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="225dp"
+    android:layout_height="160dp"
+    android:background="@color/gray"
+    android:padding="12dip"
+    android:weightSum="1">
+
+    <com.study.zlwm.mood.redefview.HYSGTextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:textSize="20dp"
+    android:textColor="@color/yellow"
+    android:paddingBottom="10dip"
+    android:id="@+id/tv"
+    android:text="用文字记录一下吧"
+    />
+    <com.study.zlwm.mood.redefview.HYSGEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textview_border"
+        android:layout_weight="0.82"
+        android:id="@+id/et"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/yes"
+        android:id="@+id/yes"
+        android:layout_below="@+id/et"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
+

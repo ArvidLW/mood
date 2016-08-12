@@ -30,9 +30,9 @@ public class MoodCardFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.mood_card_fragment,container,false);
-        view.setBackgroundColor(getResources().getColor(color,getContext().getTheme()));
+        view.setBackgroundColor(getResources().getColor(color));
         ImageView imageView= (ImageView) view.findViewById(R.id.mood_face);
-        imageView.setImageDrawable(getResources().getDrawable(drawable_mood,getContext().getTheme()));
+        //imageView.setImageDrawable(getResources().getDrawable(drawable_mood));//outofmemory
         return view;
     }
     @Override
