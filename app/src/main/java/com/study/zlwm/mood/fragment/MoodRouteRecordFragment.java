@@ -1,109 +1,142 @@
 package com.study.zlwm.mood.fragment;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.study.zlwm.mood.R;
+import android.support.v4.app.Fragment;
+
+//import lecho.lib.hellocharts.model.Line;
+//import lecho.lib.hellocharts.model.LineChartData;
+//import lecho.lib.hellocharts.model.PointValue;
+//import lecho.lib.hellocharts.model.Viewport;
+//import lecho.lib.hellocharts.view.LineChartView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MoodRouteRecordFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MoodRouteRecordFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * 曲线fragment
  */
 public class MoodRouteRecordFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+   //ValueShape valueShape=new ValueShape();
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public MoodRouteRecordFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MoodRouteRecordFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MoodRouteRecordFragment newInstance(String param1, String param2) {
-        MoodRouteRecordFragment fragment = new MoodRouteRecordFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mood_route_record, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+//    @Bind(R.id.chart_curve) LineChartView chartCurve;
+//    @Bind(R.id.curve_image) ImageView curveImage;
+//    @Bind(R.id.curve_text) TextView curveText;
+//    private int maxNumberOfLines = 4;
+//    private int numberOfPoints = 12;
+//    float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
+//
+//    public static MoodRouteRecordFragment getNewInstance() {
+//        return new MoodRouteRecordFragment();
+//    }
+//
+//
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.fragment_curve, container, false);
+//        return view;
+//    }
+//
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        //Linechart
+//    }
+//
+//    private void init() {
+//        chartCurve.setOnValueTouchListener(new ValueTouchListener());
+//
+//        generateValues();
+//
+//        generateData();
+//
+//        chartCurve.setViewportCalculationEnabled(false);
+//
+//        resetViewport();
+//
+//
+//        Glide.with(getActivity())
+//                .load(R.drawable.happy)
+//                .centerCrop()
+//                .into(curveImage);
+//
+//        curveText.setText("我的童年，存在于灿烂的阳光之下：妈妈的宽容，" +
+//                "让唠叨远在天边；老师认为我优秀，将批评隐藏在表扬当中；有一群热情的朋友，" +
+//                "将孤独驱赶得无影无踪……总而言之，我总有一个影子一般的伙伴--快乐。");
+//
+//    }
+//
+//    /**
+//     * 随机数据
+//     */
+//    private void generateValues() {
+//        for (int i = 0; i < maxNumberOfLines; ++i) {
+//            for (int j = 0; j < numberOfPoints; ++j) {
+//                randomNumbersTab[i][j] = (float) Math.random() * 100f;
+//            }
+//        }
+//    }
+//
+//
+//    private void generateData() {
+//
+//        List<Line> lines = new ArrayList<Line>();
+//
+//        List<PointValue> values = new ArrayList<PointValue>();
+//        for (int j = 0; j < numberOfPoints; ++j) {
+//            values.add(new PointValue(j, randomNumbersTab[0][j]));
+//        }
+//
+//        Line line = new Line(values);
+//        line.setColor(getResources().getColor(R.color.card_calm));
+//        line.setShape(ValueShape.CIRCLE);
+//        line.setFilled(true);
+//        line.setHasLabels(true);
+//        line.setHasLines(true);
+//        line.setHasPoints(true);
+//        line.setPointColor(getResources().getColor(R.color.card_calm));
+//        lines.add(line);
+//
+//        LineChartData data = new LineChartData(lines);
+//
+//        Axis axisX = new Axis();
+//        Axis axisY = new Axis().setHasLines(true);
+//        axisX.setName("星期");
+//        axisY.setName("心情指数");
+//        data.setAxisXBottom(axisX);
+//        data.setAxisYLeft(axisY);
+//
+//        data.setBaseValue(Float.NEGATIVE_INFINITY);
+//        chartCurve.setLineChartData(data);
+//    }
+//
+//    private void resetViewport() {
+//        // Reset viewport height range to (0,100)
+//        final Viewport v = new Viewport(chartCurve.getMaximumViewport());
+//        v.bottom = 0;
+//        v.top = 100;
+//        v.left = 0;
+//        v.right = 7;
+//        chartCurve.setMaximumViewport(v);
+//        chartCurve.setCurrentViewport(v);
+//    }
+//
+//    private class ValueTouchListener implements LineChartOnValueSelectListener {
+//
+//        @Override
+//        public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
+//            Toast.makeText(getActivity(), "Selected: " + value, Toast.LENGTH_SHORT).show();
+//        }
+//
+//        @Override
+//        public void onValueDeselected() {
+//
+//        }
+//
+//    }
+//
+//
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        ButterKnife.unbind(this);
+//    }
 }

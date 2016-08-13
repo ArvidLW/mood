@@ -18,15 +18,17 @@ import android.view.MenuItem;
 import com.study.zlwm.mood.adapter.MoodFragmentAdapter;
 import com.study.zlwm.mood.fragment.FragmentMoodPlan;
 import com.study.zlwm.mood.fragment.FragmentMyMood;
+import com.study.zlwm.mood.fragment.MoodRouteFragment;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ArrayList<String> fragmentTag=new ArrayList<String>();
-    private MoodFragmentAdapter moodFragmentAdapter;
-    private ViewPager viewPager;
+    //private ArrayList<String> fragmentTag=new ArrayList<String>();
+    //private MoodFragmentAdapter moodFragmentAdapter;
+    //private ViewPager viewPager;
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,24 +166,18 @@ public class MainActivity extends AppCompatActivity
             //为什么不行，可能因为切换后这个类又设置监听去了，但又没有找到设置监听的对象
             Log.d("lw","R.id.my_mood");
 
-           /* FragmentTransaction mytransaction=showFragment("my_mood");
-            if( mytransaction!=null ){
-
-                Fragment fragment1=new FragmentMyMood();
-                mytransaction.add(R.id.fragment_container,fragment1,"my_mood");
-                fragmentTag.add("my_mood");
-                mytransaction.commit();
-            }*/
             getSupportActionBar().setTitle("我的心情");
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            FragmentMyMood fragment1=new FragmentMyMood();
-            System.out.println("刘炜99999"+fragment1.getView());//为空为啥
-            transaction.replace(R.id.fragment_container,fragment1,"my_mood");
-            transaction.commit();
+            FragmentManager fragmentManager= getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            FragmentMyMood fragmentMyMood=new FragmentMyMood();
+            fragmentTransaction.replace(R.id.fragment_container,fragmentMyMood,"my_mood");
+            fragmentTransaction.commit();
 
         } else if (id == R.id.mood_road) {
             getSupportActionBar().setTitle("心历路程");
+            MoodRouteFragment moodRouteFragment=new MoodRouteFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container,moodRouteFragment,"mood_road").commit();
 
         } else if (id == R.id.mood_plan) {
 

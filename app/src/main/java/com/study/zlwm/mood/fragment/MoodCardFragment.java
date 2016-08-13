@@ -10,16 +10,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.study.zlwm.mood.R;
 import com.study.zlwm.mood.redefview.HYSGEditText;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by 31351 on 2016/8/11.
@@ -28,7 +24,7 @@ public class MoodCardFragment extends Fragment{
     private int drawable_mood;
     private int color;
     private String mood;
-    public static MoodCardFragment newInstance(int drawable_mood, int color,String mood){
+    public static MoodCardFragment newInstance(int drawable_mood, int color, String mood){
         MoodCardFragment fragment=new MoodCardFragment();
         Bundle args=new Bundle();
         args.putInt("drawable_mood",drawable_mood);
@@ -77,5 +73,10 @@ public class MoodCardFragment extends Fragment{
             color=args.getInt("color");
             mood=args.getString("mood");
         }
+        //System.out.println("wwwwwww");
+    }
+    public int getColor()
+    {
+        return color;
     }
 }
