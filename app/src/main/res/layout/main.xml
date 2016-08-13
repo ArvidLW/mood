@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="欢迎来到小李的博客"
+        android:text="wwww"
         />
     <Button
         android:id="@+id/bt1"

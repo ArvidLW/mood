@@ -1,26 +1,24 @@
-package com.study.zlwm.mood;
+package com.study.zlwm.mood.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.study.zlwm.mood.adapter.MoodFragmentAdapter;
+import com.study.zlwm.mood.R;
 import com.study.zlwm.mood.fragment.FragmentMoodPlan;
 import com.study.zlwm.mood.fragment.FragmentMyMood;
 import com.study.zlwm.mood.fragment.MoodRouteFragment;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -181,14 +179,6 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.mood_plan) {
 
-           /* FragmentTransaction mytransaction=showFragment("mood_plan");
-            if( mytransaction!=null ){
-
-                Fragment fragment1=new FragmentMoodPlan();
-                mytransaction.add(R.id.fragment_container,fragment1,"mood_plan");
-                fragmentTag.add("mood_plan");
-                mytransaction.commit();
-            }*/
             getSupportActionBar().setTitle("心情计划");
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
@@ -199,9 +189,16 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.good_mood) {
             getSupportActionBar().setTitle("心情圈");
 
-        } else if (id == R.id.night) {
-
-        } else if (id == R.id.setting) {
+        } else if (id == R.id.login) {
+            Intent intent = new Intent();
+            intent.setClass(this,LoginActivity.class);
+            startActivity(intent);
+//            getSupportActionBar().setTitle("心情计划");
+//            FragmentManager manager = getSupportFragmentManager();
+//            FragmentTransaction transaction = manager.beginTransaction();
+//            FragmentMoodPlan fragment1=new FragmentMoodPlan();
+//            transaction.replace(R.id.fragment_container,fragment1,"mood_plan");
+//            transaction.commit();
 
         }
         //原来是这里的才是问题，我草
