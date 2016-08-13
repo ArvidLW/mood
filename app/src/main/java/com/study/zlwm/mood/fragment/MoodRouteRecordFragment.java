@@ -9,15 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.study.zlwm.mood.R;
+import com.study.zlwm.mood.bean.MoodData;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
@@ -34,9 +38,9 @@ public class MoodRouteRecordFragment extends Fragment {
     private LineChartView chartCurve;
     private ImageView curveImage;
     private TextView curveText;
-
+    List<MoodData> moodDatalist;
     private View view;
-    private int maxNumberOfLines = 4;
+    private int maxNumberOfLines = 4;//最大为4条线，用于增加画线时用
     private int numberOfPoints = 12;
     float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
 
@@ -91,8 +95,20 @@ public class MoodRouteRecordFragment extends Fragment {
 
         List<PointValue> values = new ArrayList<PointValue>();
         for (int j = 0; j < numberOfPoints; ++j) {
-            values.add(new PointValue(j, randomNumbersTab[0][j]));
+            values.add(new PointValue(j, randomNumbersTab[1][j]));
         }
+
+        moodDatalist=new ArrayList<>();
+        for (int j = 0; j < numberOfPoints-1; ++j) {
+            moodDatalist.add(new MoodData(30,"afraid",new Date(15,3,11),"lwww"));
+        }
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            moodDatalist.add(new MoodData(70,"happy",new Date(simpleDateFormat.parse("2015-10-04").getTime() ) ,"qsdfsdf") );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //moodDatalist.add(new MoodData(70,"happy",new Date(30,3,11)));
 
         Line line = new Line(values);
         line.setColor(getResources().getColor(R.color.blue));
@@ -109,13 +125,29 @@ public class MoodRouteRecordFragment extends Fragment {
         LineChartData data = new LineChartData(lines);
 
         Axis axisX = new Axis();
+
+
+        List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
+        String[] date = {"10-22","11-22","12-22","1-22","6-22","5-23","5-22","6-22999999999999","5-23","5-22","11","12"};//X轴的标注
+        for (int i = 0; i < date.length; i++) {
+            //mAxisXValues.add(new AxisValue(i).setLabel(date[i]));
+            mAxisXValues.add(new AxisValue(i).setLabel(moodDatalist.get(i).date.toString()));
+        }
+        axisX.setValues(mAxisXValues);
+        axisX.setHasTiltedLabels(true);
+        //axisX.setMaxLabelChars(7); //最多几个X轴坐标，意思就是你的缩放让X轴上数据的个数7<=x<=mAxisXValues.length
+
         Axis axisY = new Axis().setHasLines(true);
+
         axisX.setName("星期");
         axisY.setName("心情指数");
         data.setAxisXBottom(axisX);
         data.setAxisYLeft(axisY);
 
         data.setBaseValue(Float.NEGATIVE_INFINITY);
+
+
+
         chartCurve.setLineChartData(data);
     }
 
@@ -126,6 +158,7 @@ public class MoodRouteRecordFragment extends Fragment {
         v.top = 105;
         v.left = 0;
         v.right = 7;
+
         chartCurve.setCurrentViewport(v);
         //final Viewport maxV=new Viewport(chartCurve.getMaximumViewport());
         v.right=16;
@@ -137,7 +170,11 @@ public class MoodRouteRecordFragment extends Fragment {
 
         @Override
         public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
-            Toast.makeText(getActivity(), "Selected: " + value, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "Selected: " + value, Toast.LENGTH_SHORT).show();
+            System.out.println("rrrrr"+moodDatalist.get(pointIndex).mood);
+            curveImage.setImageDrawable(getResources().getDrawable(getResources().getIdentifier("mood_"+moodDatalist.get(pointIndex).mood.toString(),"drawable",getContext().getPackageName())));
+            //curveImage.setImageDrawable(getResources().getDrawable(getResources().getIdentifier("mood_afraid","drawable",getContext().getPackageName())));
+            curveText.setText(moodDatalist.get(pointIndex).reason);
         }
 
         @Override

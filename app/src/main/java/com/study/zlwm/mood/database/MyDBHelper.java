@@ -12,8 +12,19 @@ public class MyDBHelper extends SQLiteOpenHelper {
             "tel_id integer primary key," +
             "name text default null," +
             "password text default null," +
-            "sex text default null)";
+            "sex text default null)," +
+            "issyn integer default 0)";
+    //tel_id关联键
     final String CREATE_MOOD_TABLE_SQL="create table mood(" +
+            "id integer primary key autoincrement," +
+            "tel_id integer not null," +
+            "mood text default null," +
+            "moodscrore integer null," +
+            "reason text default null," +
+            "image text default null," +
+            "dateandtime text default null," +
+            "issyn integer default 0)";
+    final String CREATE_MOOD_PLAN_SQL="create table mood(" +
             "id integer primary key autoincrement," +
             "tel_id integer not null," +
             "mood text default null," +
@@ -39,6 +50,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CERATE_USER_TABLE_SQL);
         db.execSQL(CREATE_MOOD_TABLE_SQL);
+        db.execSQL(CREATE_MOOD_PLAN_SQL);
     }
     //当打开数据库时传入的版本号与当前的版本号不同时会调用该方法
     @Override
