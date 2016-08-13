@@ -7,15 +7,26 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by 31351 on 2016/7/14.
  */
 public class MyDBHelper extends SQLiteOpenHelper {
+    //注册成功后将id和密码保存到本地，然后本地可以登录。关于过期什么的以后再说吧
+    //那我本地可以先注册一个号嘛。
 
-    final String CERATE_USER_TABLE_SQL="create table user(" +
+    /**是SQLiteOpenHelper 的构造函数，当数据库不存在时，就会创建数据库，
+    然后打开数据库（过程已经被封装起来了），再调用onCreate (SQLiteDatabase db)方法来执行创建表之类的操作。
+    当数据库存在时，SQLiteOpenHelper 就不会调用onCreate (SQLiteDatabase db)方法了，
+    它会检测版本号，若传入的版本号高于当前的，就会执行onUpgrade()方法来更新数据库和版本号。
+    */
+    public MyDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context,name,factory,version);
+    }
+
+    final String CERATE_USER_TABLE_SQL="create table if not exists user(" +
             "tel_id integer primary key," +
             "name text default null," +
             "password text default null," +
-            "sex text default null)," +
+            "sex text default null," +
             "issyn integer default 0)";
     //tel_id关联键
-    final String CREATE_MOOD_TABLE_SQL="create table mood(" +
+    final String CREATE_MOOD_TABLE_SQL="create table if not exists mood(" +
             "id integer primary key autoincrement," +
             "tel_id integer not null," +
             "mood text default null," +
@@ -24,7 +35,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             "image text default null," +
             "dateandtime text default null," +
             "issyn integer default 0)";
-    final String CREATE_MOOD_PLAN_SQL="create table mood(" +
+    final String CREATE_MOOD_PLAN_SQL="create table if not exists mood_plan(" +
             "id integer primary key autoincrement," +
             "tel_id integer not null," +
             "mood text default null," +
@@ -48,7 +59,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
      * */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CERATE_USER_TABLE_SQL);
+        db.execSQL(CERATE_USER_TABLE_SQL);//检测有没有表 if not exists 时创建
         db.execSQL(CREATE_MOOD_TABLE_SQL);
         db.execSQL(CREATE_MOOD_PLAN_SQL);
     }

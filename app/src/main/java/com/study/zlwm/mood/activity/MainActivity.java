@@ -1,7 +1,9 @@
 package com.study.zlwm.mood.activity;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.study.zlwm.mood.R;
 import com.study.zlwm.mood.fragment.FragmentMoodPlan;
@@ -63,55 +67,18 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        //this.setContentView(R.layout.activity_main);
-
-        /*setContentView(R.layout.main);
-        // 以findViewById()取得Button对象并添加事件onClickLisener
-        Button button1=(Button)findViewById(R.id.bt1);
-        button1.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                goToLayout2();
-
-
-            }});*/
     }
- /*   public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-
-        // 以findViewById()取得Button对象并添加事件onClickLisener
-        Button button1=(Button)findViewById(R.id.bt1);
-        button1.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                goToLayout2();
-
-
-            }});
-
-    }*/
-    /*public void goToLayout2() {
-        // 将layout改成mylayout
-        setContentView(R.layout.mylayout);
-        Button b2 = (Button) findViewById(R.id.bt2);
-        b2.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                goToLayout1();
-            }
-        });
+    public void setUser() {
+        SharedPreferences preferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        //第二个参数为默认值
+        String user_id=preferences.getString("user_id", "指路为码");
+        String name=preferences.getString("name", "华为比赛");
+        TextView headUserId= (TextView) findViewById(R.id.head_user_id);
+        TextView headUsername= (TextView) findViewById(R.id.head_user_name);
+        //System.out.println("uuuuu"+user_id+"|"+headUserId+"|"+headUsername);
+        headUserId.setText(user_id);
+        headUsername.setText(name);
     }
-    // 将layout由mylayout.xml切换成main.xml
-    public void goToLayout1() {
-        setContentView(R.layout.main);
-        Button bt1 = (Button) findViewById(R.id.bt1);
-        bt1.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                goToLayout2();
-            }
-        });
-    }*/
 
     @Override
     //当按下返回键时执行程序
@@ -133,6 +100,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        setUser();//当menu被加载时才能获取到相应侧栏的view
         Log.d("lw","加载menu");
         return true;
     }
@@ -192,7 +160,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.login) {
             Intent intent = new Intent();
             intent.setClass(this,LoginActivity.class);
-            startActivity(intent);
+            // 启动需要监听返回值的Activity，并设置请求码：requestCode
+            startActivityForResult(intent,1);
 //            getSupportActionBar().setTitle("心情计划");
 //            FragmentManager manager = getSupportFragmentManager();
 //            FragmentTransaction transaction = manager.beginTransaction();
@@ -200,6 +169,10 @@ public class MainActivity extends AppCompatActivity
 //            transaction.replace(R.id.fragment_container,fragment1,"mood_plan");
 //            transaction.commit();
 
+        }else if(id==R.id.register) {
+            Intent intent = new Intent();
+            intent.setClass(this,RegisterActivity.class);
+            startActivity(intent);
         }
         //原来是这里的才是问题，我草
         //选了之后关闭
@@ -207,29 +180,22 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    /*private FragmentTransaction showFragment(String tag)
-    {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-
-        for (String tmp:fragmentTag)
-        {
-            Fragment fragment1=manager.findFragmentByTag(tmp);
-            transaction.hide(fragment1);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // 当otherActivity中返回数据的时候，会响应此方法
+        // requestCode和resultCode必须与请求startActivityForResult()和返回setResult()的时候传入的值一致。
+        //请求码结果码来区别来自哪的响应
+        if (requestCode == 1 && resultCode == 1) {
+            Bundle bundle = data.getExtras();
+            String user_id = bundle.getString("user_id");
+            String name = bundle.getString("name");
+            //Log.i(TAG,"onActivityResult: "+ strResult);
+            TextView headUserId= (TextView) findViewById(R.id.head_user_id);
+            TextView headUsername= (TextView) findViewById(R.id.head_user_name);
+            headUserId.setText(user_id);
+            headUsername.setText(name);
+            Toast.makeText(MainActivity.this, user_id + ":" + name, Toast.LENGTH_SHORT).show();
         }
+    }
 
-        if(fragmentTag.contains(tag))
-        {
-            Fragment fragment1=manager.findFragmentByTag(tag);
-            transaction.show(fragment1);
-            transaction.commit();
-            return null;
-        }
-        else
-        {
-            return transaction;
-        }
-
-    }*/
 }

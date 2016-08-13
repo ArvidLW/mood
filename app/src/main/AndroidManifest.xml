@@ -25,6 +25,10 @@
             android:name=".activity.LoginActivity"
             android:label="登录/切换用户"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:label="注册"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
