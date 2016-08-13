@@ -20,7 +20,7 @@ public class MoodFragmentAdapter extends FragmentPagerAdapter {
 
         moodcardlist=new ArrayList<>();
         MoodCardInfo moodInfo;
-        System.out.println("eeeeeeeee:"+moodcardinfolist.size());
+        //System.out.println("eeeeeeeee:"+moodcardinfolist.size());
         for(int i=0; i< moodcardinfolist.size();++i)
         {
 
@@ -35,16 +35,16 @@ public class MoodFragmentAdapter extends FragmentPagerAdapter {
 //        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_quiet,R.color.cornflowerblue,"quiet"));
 //        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_sad,R.color.darkkhaki,"sad"));
 //        moodcardlist.add(MoodCardFragment.newInstance(R.drawable.mood_satisfied,R.color.orangered,"satisfied"));
-        System.out.println("hhhhhhhh");
+        //System.out.println("hhhhhhhh");
 
-        titleList.add("11");
+       /* titleList.add("11");
         titleList.add("21");
         titleList.add("31");
         titleList.add("41");
         titleList.add("51");
         titleList.add("61");
         titleList.add("71");
-        titleList.add("81");
+        titleList.add("81");*/
     }
 
     @Override
@@ -57,10 +57,10 @@ public class MoodFragmentAdapter extends FragmentPagerAdapter {
         return moodcardlist.size();
     }
 
-    @Override
+   /* @Override
     public CharSequence getPageTitle(int position) {
         return titleList.get(position);
     }
-
+*/
 
 }

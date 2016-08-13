@@ -39,4 +39,5 @@ public class MoodRouteSAdapter extends FragmentStatePagerAdapter{
     public CharSequence getPageTitle(int position) {
         return tileList.get(position);
     }
+
 }

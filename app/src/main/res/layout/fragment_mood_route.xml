@@ -13,7 +13,7 @@
         app:tabSelectedTextColor="@color/white"
         app:tabTextColor="@color/pink"
         />
-    <android.support.v4.view.ViewPager
+    <com.study.zlwm.mood.redefview.NoScollViewPager
         android:id="@+id/route_view_pager"
         android:layout_below="@id/route_tabs"
         android:layout_width="match_parent"

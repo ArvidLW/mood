@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -17,7 +15,6 @@ import com.study.zlwm.mood.EditMoodPlan;
 import com.study.zlwm.mood.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,20 +33,7 @@ public class FragmentMoodPlan extends Fragment {
     //private Map map;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //return super.onCreateView(inflater, container, savedInstanceState);
-        // myview=inflater.inflate(R.layout.fragment_mood_plan,container,false);
-        //View rootView = inflater.inflate(R.layout.fragment_mood_plan, null);
-        //Log.d("sdfsdf","进入Fragment页面");
-        /*listView= (ListView) myview.findViewById(android.R.id.list);
-        if(listView ==null)
-        {
-            Log.d("sdfsdf","空空空");
-        }
-        else{
-            Log.d("sdfsdf","不不不空空空");
-        }*/
-        //Log.d("sdfsdf","33333不不不空空空");
-        //return myview;
+
         return inflater.inflate(R.layout.fragment_mood_plan,container,false);
     }
 
@@ -106,8 +90,8 @@ public class FragmentMoodPlan extends Fragment {
                 else{
                     view.setVisibility(View.VISIBLE);
                 }*/
-                System.out.println("刘炜"+hp);
-                Log.d("view",view.toString());
+                //System.out.println("刘炜"+hp);
+               // Log.d("view",view.toString());
                 //simContent.setMinimumHeight(0);
                 return false;
             }

@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.study.zlwm.mood.R;
 import com.study.zlwm.mood.adapter.MoodRouteSAdapter;
+import com.study.zlwm.mood.redefview.NoScollViewPager;
 
 /**
  * Created by 31351 on 2016/8/13.
@@ -28,7 +28,7 @@ public class MoodRouteFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ViewPager viewPager= (ViewPager) view.findViewById(R.id.route_view_pager);
+        NoScollViewPager viewPager= (NoScollViewPager) view.findViewById(R.id.route_view_pager);
         TabLayout tableLayout= (TabLayout) view.findViewById(R.id.route_tabs);
         tableLayout.setTabMode(TabLayout.MODE_FIXED);
 
