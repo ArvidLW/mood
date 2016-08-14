@@ -23,6 +23,7 @@ import com.study.zlwm.mood.R;
 import com.study.zlwm.mood.fragment.FragmentMoodPlan;
 import com.study.zlwm.mood.fragment.FragmentMyMood;
 import com.study.zlwm.mood.fragment.MoodRouteFragment;
+import com.study.zlwm.mood.global.GlobalInfo;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -78,7 +79,13 @@ public class MainActivity extends AppCompatActivity
         //System.out.println("uuuuu"+user_id+"|"+headUserId+"|"+headUsername);
         headUserId.setText(user_id);
         headUsername.setText(name);
+
+        //设置全局变量
+        GlobalInfo globalInfo= (GlobalInfo) getApplication();
+        globalInfo.setTel_id(user_id);
+        globalInfo.setUsername(name);
     }
+
 
     @Override
     //当按下返回键时执行程序

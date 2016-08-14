@@ -19,7 +19,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.study.zlwm.mood.R;
-import com.study.zlwm.mood.database.MyDBHelper;
+import com.study.zlwm.mood.database.SqlDB;
+import com.study.zlwm.mood.global.GlobalInfo;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText user_name_et;
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Toast.makeText(getBaseContext(),"来了",Toast.LENGTH_SHORT);
                 //SQLiteOpenHelper 的构造函数，当数据库不存在时，就会创建数据库，然后打开数据库
-                MyDBHelper myDBHelper=new MyDBHelper(getBaseContext(),"zlwm_mood.db",null,1);
+                //MyDBHelper myDBHelper=new MyDBHelper(getBaseContext(),"zlwm_mood.db",null,1);
                 user_id=user_name_et.getText().toString().trim();
                 name="刘炜";
                 String password=user_pass_et.getText().toString().trim();
@@ -54,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),"用户名或密码不对",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                SQLiteDatabase db=myDBHelper.getWritableDatabase();
+                //SQLiteDatabase db=myDBHelper.getWritableDatabase();
+                SQLiteDatabase db= SqlDB.getSqlDB(getBaseContext());
                 Cursor cursor=db.rawQuery("select * from user where tel_id=? and password=?",new String[]{user_id,password});
                 if(cursor.getCount()==0)
                 {
@@ -70,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                     // 可以设置全局变量
 
                 }
+                cursor.close();
 
             }
         });
@@ -88,9 +91,11 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("name",name);
         setResult(1, intent);// 设置resultCode，onActivityResult()中能获取到
         finish();
-//      GlobalInfo globalInfo= (GlobalInfo) getApplication();
-//      globalInfo.setTel_id(user_id);
-//      globalInfo.setUsername(name);
+
+        //设置全局变量
+        GlobalInfo globalInfo= (GlobalInfo) getApplication();
+        globalInfo.setTel_id(user_id);
+        globalInfo.setUsername(name);
     }
 
     @Override
@@ -98,10 +103,10 @@ public class LoginActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent();
-                intent.putExtra("user_id", user_id);
-                intent.putExtra("name",name);
-                setResult(1, intent);// 设置resultCode，onActivityResult()中能获取到
+//                Intent intent = new Intent();
+//                intent.putExtra("user_id", user_id);
+//                intent.putExtra("name",name);
+//                setResult(1, intent);// 设置resultCode，onActivityResult()中能获取到
                 finish();
                 return true;
         }

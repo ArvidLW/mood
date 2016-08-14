@@ -16,13 +16,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.study.zlwm.mood.R;
-import com.study.zlwm.mood.database.MyDBHelper;
+import com.study.zlwm.mood.database.SqlDB;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText user_name_et;
     private EditText user_pass_et;
     private Button register_bt;
-    private Button return_bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Toast.makeText(getBaseContext(),"来了",Toast.LENGTH_SHORT);
                 //SQLiteOpenHelper 的构造函数，当数据库不存在时，就会创建数据库，然后打开数据库
-                MyDBHelper myDBHelper=new MyDBHelper(getBaseContext(),"zlwm_mood.db",null,1);
+                //MyDBHelper myDBHelper=new MyDBHelper(getBaseContext(),"zlwm_mood.db",null,1);
                 String user_id=user_name_et.getText().toString().trim();
                 String password=user_pass_et.getText().toString().trim();
                 if(user_id.isEmpty()||password.isEmpty())
@@ -50,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),"用户名或密码不对",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                SQLiteDatabase db=myDBHelper.getWritableDatabase();
+                SQLiteDatabase db= SqlDB.getSqlDB(getBaseContext());
                 Cursor cursor=db.rawQuery("select * from user where tel_id=?",new String[]{user_id});
                 if(cursor.getCount()==0)
                 {
@@ -61,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(getBaseContext(),"已经注册过该用户了",Toast.LENGTH_SHORT).show();
                 }
+                cursor.close();
 
             }
         });

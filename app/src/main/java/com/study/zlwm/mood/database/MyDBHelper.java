@@ -30,7 +30,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
             "id integer primary key autoincrement," +
             "tel_id integer not null," +
             "mood text default null," +
-            "moodscrore integer null," +
+            "moodscore integer null," +
             "reason text default null," +
             "image text default null," +
             "dateandtime text default null," +

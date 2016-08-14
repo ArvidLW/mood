@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-import com.study.zlwm.mood.EditMoodPlan;
+import com.study.zlwm.mood.activity.EditMoodPlanActivity;
 import com.study.zlwm.mood.R;
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class FragmentMoodPlan extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 System.out.println(position);
                 Intent intent=new Intent();
-                intent.setClass(getContext(),EditMoodPlan.class);
+                intent.setClass(getContext(),EditMoodPlanActivity.class);
                 startActivity(intent);
 
                 //view.setVisibility(View.INVISIBLE);

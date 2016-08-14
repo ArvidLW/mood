@@ -43,7 +43,7 @@ public class FragmentMyMood extends Fragment{
         //MoodCardInfo cardInfo;
 
         //int[] colors={R.color.blueviolet,R.color.gray,R.color.brown,R.color.yellow,R.color.royalblue,R.color.cornflowerblue,R.color.darkkhaki,R.color.orangered};
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < moodCardInfoList.size(); i++) {
            // cardInfo=moodCardInfolist.get(i);
             TextView tv = new TextView(getActivity());
 
