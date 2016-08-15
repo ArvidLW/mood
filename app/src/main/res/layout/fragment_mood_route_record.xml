@@ -1,8 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="1600dp"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="5dp"
+     >
 
     <lecho.lib.hellocharts.view.LineChartView
         android:id="@+id/chart_curve"
@@ -22,29 +23,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:text="心情:"
-            android:layout_weight="1"/>
+            android:text="心情"
+            android:layout_weight="4"/>
 
         <View
             android:layout_width="2dp"
-            android:layout_height="80dp"
+            android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:layout_gravity="center_vertical"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            />
 
         <ImageView
             android:id="@+id/curve_image"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_weight="3"/>
+            android:layout_weight="1"/>
 
 
     </LinearLayout>
@@ -59,15 +62,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:text="记录:"
-            android:layout_weight="1"/>
+            android:text="记录"
+            android:layout_weight="4"/>
 
         <View
             android:layout_width="2dp"
@@ -75,15 +79,15 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:layout_gravity="center_vertical"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            />
 
         <TextView
             android:id="@+id/curve_text"
             android:layout_marginLeft="20dp"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:lines="5"
+            android:layout_weight="1"
             android:ellipsize="marquee"
             android:textSize="14sp"
             android:layout_gravity="center_vertical"

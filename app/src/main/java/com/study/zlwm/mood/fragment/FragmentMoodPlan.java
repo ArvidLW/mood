@@ -66,7 +66,7 @@ public class FragmentMoodPlan extends Fragment {
             listItems.add(listItem);
         }
         int colors[]={R.color.w1_yellow,R.color.w2_blue,R.color.w3_light_red,
-                R.color.burlywood,R.color.lightblue,R.color.tan,R.color.turquoise};
+                R.color.burlywood,R.color.lightblue,R.color.peachpuff,R.color.turquoise};
 
         simpleAdapter = new MySimpleAdapter(getContext(), listItems, R.layout.mood_plan_item,
                 new String[]{"week","tag","simCon","myTag"},

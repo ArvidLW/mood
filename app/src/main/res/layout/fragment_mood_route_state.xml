@@ -15,7 +15,7 @@
         android:layout_height="2dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@color/seagreen" />
 
     <GridView
         android:id="@+id/grid_cutline"
@@ -29,13 +29,13 @@
 
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
@@ -43,7 +43,7 @@
 
         <TextView
             android:id="@+id/average_mood"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:layout_gravity="center"

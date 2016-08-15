@@ -5,14 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.study.zlwm.mood.R;
@@ -21,6 +19,7 @@ import com.study.zlwm.mood.bean.MoodToColor;
 import com.study.zlwm.mood.bean.MoodToScore;
 import com.study.zlwm.mood.database.SqlDB;
 import com.study.zlwm.mood.global.GlobalInfo;
+import com.study.zlwm.mood.redefview.My2SimpleAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -83,22 +82,22 @@ public class MoodRouteStateFragment extends Fragment {
         int [] to = {R.id.mood_cutline};
         //sim_adapter = new SimpleAdapter(this, data_list, R.layout.item, from, to);
         //配置适配器
-        gridView.setAdapter(new SimpleAdapter(getContext(), data_list, R.layout.cutline_item, from, to));
+        gridView.setAdapter(new My2SimpleAdapter(getContext(), data_list, R.layout.cutline_item, from, to,moodInfoList));
         //gridView
        // View gridItemMap= (View) gridView.getItemAtPosition(0);
 
         //http://www.cnblogs.com/Couch-potato/archive/2012/12/11/2813460.html
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                // TODO Auto-generated method stub
-                for(int i=0;i<moodInfoList.size();++i)
-                {
-                    gridView.getChildAt(i).findViewById(R.id.mood_color).setBackgroundColor(getResources().getColor(moodInfoList.get(i).color));
-                }
-
-            }
-        }, 500);
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//                // TODO Auto-generated method stub
+//                for(int i=0;i<moodInfoList.size();++i)
+//                {
+//                    gridView.getChildAt(i).findViewById(R.id.mood_color).setBackgroundColor(getResources().getColor(moodInfoList.get(i).color));
+//                }
+//
+//            }
+//        }, 500);
         //gridView.
         //System.out.println("111111"+gridItemMap.toString());
     }
