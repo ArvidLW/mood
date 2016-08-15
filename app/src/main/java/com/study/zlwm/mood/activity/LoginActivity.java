@@ -94,12 +94,11 @@ public class LoginActivity extends AppCompatActivity {
 //        //设置全局变量
         GlobalInfo globalInfo= (GlobalInfo) getApplication();
         String old_user_id=globalInfo.getTel_id();//得到以前的userid
-        System.out.println("ooooooo:"+old_user_id);
         globalInfo.setTel_id(user_id);
         globalInfo.setUsername(name);
 
         //设置数据库，如果为tel_id为未登录那么将其更新为现在的id,即默认数据库变为现有的
-        if(old_user_id.equals("未登录")){
+        if(old_user_id.equals("noLogin")){
             SQLiteDatabase db=SqlDB.getSqlDB(getBaseContext());
             db.execSQL("update mood_plan set tel_id=? where tel_id=?",new String[]{user_id,old_user_id});
         }

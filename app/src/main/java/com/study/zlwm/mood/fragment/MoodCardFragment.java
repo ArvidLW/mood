@@ -78,7 +78,6 @@ public class MoodCardFragment extends Fragment{
                     yes_submit.setText("确认");
                     isUpdate=true;
                 }
-                System.out.println("ooooooo"+user_id);
                 final boolean finalIsUpdate = isUpdate;
                 yes_submit.setOnClickListener(new View.OnClickListener(){
 
@@ -145,9 +144,9 @@ public class MoodCardFragment extends Fragment{
     public void getUserInfo() {
         SharedPreferences preferences=getContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         //第二个参数为默认值
-        user_id=preferences.getString("user_id", "指路为码");
+        user_id=preferences.getString("user_id", "noLogin");
         System.out.println("ooooooo"+user_id);
-        name=preferences.getString("name", "华为比赛");
+        name=preferences.getString("name", "心情");
 
     }
 }

@@ -95,6 +95,8 @@ public class MoodRouteRecordFragment extends Fragment {
 
         SQLiteDatabase db= SqlDB.getSqlDB(getContext());
         Cursor cursor=db.rawQuery("select mood,moodscore,reason,dateandtime from mood where tel_id=?",new String[]{user_id});
+        System.out.println("ooooooo:"+user_id);
+
         try {
             if(cursor.getCount()<7){
                 fillData(7-cursor.getCount());
@@ -125,7 +127,6 @@ public class MoodRouteRecordFragment extends Fragment {
             for(int i=0;i<n-1;++i){
                 int j=i+1;
                 moodDatalist.add(new MoodData((int) randomNumbersTab[0][i],"happy",new Date(simpleDateFormat.parse("2016-08-0"+j).getTime() ),"我就么滴吧"));
-                //System.out.println("XXXXXXXXX"+randomNumbersTab[0][i]);
             }
             moodDatalist.add(new MoodData((int) randomNumbersTab[0][n],"satisfied",new Date(simpleDateFormat.parse("2016-08-13").getTime() ),"来来来最后一天"));
 

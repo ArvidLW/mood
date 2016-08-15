@@ -75,14 +75,11 @@ public class MainActivity extends AppCompatActivity
         //共享变量以文件形式，当退出用户时再登录可以看到
         SharedPreferences preferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         //第二个参数为默认值
-        String user_id=preferences.getString("user_id", "未登录");
-        String name=preferences.getString("name", "华为比赛");
+        String user_id=preferences.getString("user_id", "noLogin");
+        String name=preferences.getString("name", "心情");
 
-        System.out.println("ooooooo:user_id:"+user_id);
-        System.out.println("ooooooo:name:"+name);
         TextView headUserId= (TextView) findViewById(R.id.head_user_id);
         TextView headUsername= (TextView) findViewById(R.id.head_user_name);
-        //System.out.println("uuuuu"+user_id+"|"+headUserId+"|"+headUsername);
         headUserId.setText(user_id);
         headUsername.setText(name);
 
@@ -100,10 +97,10 @@ public class MainActivity extends AppCompatActivity
         // void函数要写return,否则会失效，例如这个函数。
         // 点击返回建时，如果抽屉菜单是开着的就关闭
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            Log.d("lw","onbackpressed_open");
+           // Log.d("lw","onbackpressed_open");
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            Log.d("lw","onbackpressed_open_else");
+           // Log.d("lw","onbackpressed_open_else");
             super.onBackPressed();
         }
     }
