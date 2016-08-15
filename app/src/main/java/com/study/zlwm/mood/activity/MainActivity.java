@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.study.zlwm.mood.R;
+import com.study.zlwm.mood.fragment.FragmentMoodCircle;
 import com.study.zlwm.mood.fragment.FragmentMoodPlan;
 import com.study.zlwm.mood.fragment.FragmentMyMood;
 import com.study.zlwm.mood.fragment.MoodRouteFragment;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity
 
         toggle.syncState();/*实现左上角那个点击按钮与抽屉同步*/
 
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         toMyMoodFragment();
@@ -108,11 +110,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     //加载menu  sdk3.0以后menu包含在actionbar中
     public boolean onCreateOptionsMenu(Menu menu) {
+        //设置用户放在这吧，放在其它地方不知道什么时间执行合适
+        setUser();
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        setUser();//当menu被加载时才能获取到相应侧栏的view
-        Log.d("lw","加载menu");
-        return true;
+        //getMenuInflater().inflate(R.menu.main, menu);
+        //当menu被加载时才能获取到相应侧栏的view
+        //Log.d("lw","加载menu");
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -166,6 +170,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.good_mood) {
             getSupportActionBar().setTitle("心情圈");
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            FragmentMoodCircle fragment1=new FragmentMoodCircle();
+            transaction.replace(R.id.fragment_container,fragment1,"mood_circle");
+            transaction.commit();
 
         } else if (id == R.id.login) {
             Intent intent = new Intent();
