@@ -45,9 +45,10 @@ public class MoodRouteRecordFragment extends Fragment {
     List<MoodData> moodDatalist;
     SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
     private View view;
-    private int maxNumberOfLines = 4;//最大为4条线，用于增加画线时用
+    private int maxNumberOfLines = 1;//最大为4条线，用于增加画线时用
     private int numberOfPoints = 12;
     float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
+    private int dataNum;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -96,9 +97,9 @@ public class MoodRouteRecordFragment extends Fragment {
         SQLiteDatabase db= SqlDB.getSqlDB(getContext());
         Cursor cursor=db.rawQuery("select mood,moodscore,reason,dateandtime from mood where tel_id=?",new String[]{user_id});
         System.out.println("ooooooo:"+user_id);
-
+        dataNum=cursor.getCount();
         try {
-            if(cursor.getCount()<7){
+            if(dataNum<7){
                 fillData(7-cursor.getCount());
             }
             while(cursor.moveToNext()){
@@ -213,7 +214,7 @@ public class MoodRouteRecordFragment extends Fragment {
 
         chartCurve.setCurrentViewport(v);
         //final Viewport maxV=new Viewport(chartCurve.getMaximumViewport());
-        v.right=9;
+        v.right=dataNum>7?dataNum:7;
         chartCurve.setMaximumViewport(v);
 
     }

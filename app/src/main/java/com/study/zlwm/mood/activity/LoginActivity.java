@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_register);
+        setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 //SQLiteOpenHelper 的构造函数，当数据库不存在时，就会创建数据库，然后打开数据库
                 //MyDBHelper myDBHelper=new MyDBHelper(getBaseContext(),"zlwm_mood.db",null,1);
                 user_id=user_name_et.getText().toString().trim();
-                name="心情";
+                //name="心情";
                 String password=user_pass_et.getText().toString().trim();
                 if(user_id.isEmpty()||password.isEmpty())
                 {
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 //SQLiteDatabase db=myDBHelper.getWritableDatabase();
                 SQLiteDatabase db= SqlDB.getSqlDB(getBaseContext());
-                Cursor cursor=db.rawQuery("select * from user where tel_id=? and password=?",new String[]{user_id,password});
+                Cursor cursor=db.rawQuery("select * from user where tel_id=? and password=? limit 1",new String[]{user_id,password});
                 if(cursor.getCount()==0)
                 {
                     //db.execSQL("insert into user ('tel_id','name','password') values(?,?,?)",new String[]{user_id,"刘炜",password});
@@ -63,6 +63,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
                 else{
+                    cursor.moveToNext();
+                    name=cursor.getString(cursor.getColumnIndex("name"));
+                    //System.out.println("ooooooo:"+cursor.getColumnIndex("name"));
                     Toast.makeText(getBaseContext(),"登录成功",Toast.LENGTH_SHORT).show();
                     //进行登录成功的相关操作
                     //回传值，关闭activity

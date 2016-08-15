@@ -65,7 +65,7 @@ public class FragmentMoodPlan extends Fragment {
             listItem.put("simCon",moodPlanInfo.plan);
             listItems.add(listItem);
         }
-        int colors[]={R.color.yellow,R.color.chartreuse,R.color.red,
+        int colors[]={R.color.w1_yellow,R.color.w2_blue,R.color.w3_light_red,
                 R.color.burlywood,R.color.lightblue,R.color.tan,R.color.turquoise};
 
         simpleAdapter = new MySimpleAdapter(getContext(), listItems, R.layout.mood_plan_item,
@@ -114,10 +114,10 @@ public class FragmentMoodPlan extends Fragment {
             //listView= (ListView) getView().findViewById(R.id.mood_plan_list);
             int p=Integer.parseInt(dow)-1;
             LinearLayout viewItem= (LinearLayout) listView.getChildAt(p-listView.getFirstVisiblePosition());
-            if(viewItem==null)
-            {
-                System.out.println("aaaaaaaaa:为空");
-            }
+//            if(viewItem==null)
+//            {
+//                System.out.println("aaaaaaaaa:为空");
+//            }
             TextView moodTag= (TextView) viewItem.findViewById(R.id.moodTag);
             TextView simCon= (TextView) viewItem.findViewById(R.id.moodSimCon);
             String tag1=bundle.getString("tag1");

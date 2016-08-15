@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#ffffff"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_login_register">
+    tools:showIn="@layout/activity_login">
 
     <LinearLayout
         android:orientation="vertical"
@@ -35,11 +35,29 @@
                     android:gravity="center_vertical" />
 
                 <EditText
-                    android:id="@+id/user_name_et"
+                    android:id="@+id/user_tel"
                     android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户名"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:gravity="center_vertical" />
+
+
+                <EditText
+                android:id="@+id/user_name_et"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
             </TableRow>
 
             <TableRow>

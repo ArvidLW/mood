@@ -21,17 +21,19 @@ import com.study.zlwm.mood.database.SqlDB;
 public class RegisterActivity extends AppCompatActivity {
     private EditText user_name_et;
     private EditText user_pass_et;
+    private EditText user_tel;
     private Button register_bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_register);
+        setContentView(R.layout.activity_register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//程序应用图标对应id为home
 
+        user_tel= (EditText) findViewById(R.id.user_tel);
         user_name_et= (EditText) findViewById(R.id.user_name_et);
         user_pass_et= (EditText) findViewById(R.id.user_pass_et);
         register_bt= (Button) findViewById(R.id.submit_bt);
@@ -42,7 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
                 //Toast.makeText(getBaseContext(),"来了",Toast.LENGTH_SHORT);
                 //SQLiteOpenHelper 的构造函数，当数据库不存在时，就会创建数据库，然后打开数据库
                 //MyDBHelper myDBHelper=new MyDBHelper(getBaseContext(),"zlwm_mood.db",null,1);
-                String user_id=user_name_et.getText().toString().trim();
+                String user_id=user_tel.getText().toString().trim();
+                String user_name=user_name_et.getText().toString().trim();
                 String password=user_pass_et.getText().toString().trim();
                 if(user_id.isEmpty()||password.isEmpty())
                 {
@@ -53,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Cursor cursor=db.rawQuery("select * from user where tel_id=?",new String[]{user_id});
                 if(cursor.getCount()==0)
                 {
-                    db.execSQL("insert into user ('tel_id','name','password') values(?,?,?)",new String[]{user_id,"刘炜",password});
+                    db.execSQL("insert into user ('tel_id','name','password') values(?,?,?)",new String[]{user_id,user_name,password});
                     Toast.makeText(getBaseContext(),"注册成功了",Toast.LENGTH_SHORT).show();
 
                 }

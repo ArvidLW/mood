@@ -7,7 +7,9 @@
     <lecho.lib.hellocharts.view.LineChartView
         android:id="@+id/chart_curve"
         android:layout_width="match_parent"
-        android:layout_height="250dp" >
+        android:layout_height="250dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp">
     </lecho.lib.hellocharts.view.LineChartView>
 
     <View
@@ -61,7 +63,7 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:text="记录:"
@@ -69,7 +71,7 @@
 
         <View
             android:layout_width="2dp"
-            android:layout_height="80dp"
+            android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:layout_gravity="center_vertical"
@@ -79,12 +81,13 @@
             android:id="@+id/curve_text"
             android:layout_marginLeft="20dp"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="3"
             android:lines="5"
-            android:ellipsize="end"
+            android:ellipsize="marquee"
             android:textSize="14sp"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            />
     </LinearLayout>
 
 
