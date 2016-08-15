@@ -4,9 +4,7 @@ package com.study.zlwm.mood.activity;
  * Created by 31351 on 2016/8/13.
  */
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -48,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 //SQLiteOpenHelper 的构造函数，当数据库不存在时，就会创建数据库，然后打开数据库
                 //MyDBHelper myDBHelper=new MyDBHelper(getBaseContext(),"zlwm_mood.db",null,1);
                 user_id=user_name_et.getText().toString().trim();
-                name="刘炜";
+                name="心情";
                 String password=user_pass_et.getText().toString().trim();
                 if(user_id.isEmpty()||password.isEmpty())
                 {
@@ -80,11 +78,12 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void dataSetAndSave()
     {
-        SharedPreferences preferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor=preferences.edit();
-        editor.putString("user_id",user_id);
-        editor.putString("name",name);
-        editor.commit();
+//        //登录成功后共享变量更新
+//        SharedPreferences preferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor=preferences.edit();
+//        editor.putString("user_id",user_id);
+//        editor.putString("name",name);
+//        editor.commit();
 
         Intent intent = new Intent();
         intent.putExtra("user_id", user_id);
@@ -92,9 +91,10 @@ public class LoginActivity extends AppCompatActivity {
         setResult(1, intent);// 设置resultCode，onActivityResult()中能获取到
         finish();
 
-        //设置全局变量
+//        //设置全局变量
         GlobalInfo globalInfo= (GlobalInfo) getApplication();
         String old_user_id=globalInfo.getTel_id();//得到以前的userid
+        System.out.println("ooooooo:"+old_user_id);
         globalInfo.setTel_id(user_id);
         globalInfo.setUsername(name);
 

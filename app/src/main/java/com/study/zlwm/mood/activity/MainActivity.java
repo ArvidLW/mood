@@ -64,10 +64,12 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
+
         toggle.syncState();/*实现左上角那个点击按钮与抽屉同步*/
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        toMyMoodFragment();
     }
     public void setUser() {
         //共享变量以文件形式，当退出用户时再登录可以看到
@@ -75,6 +77,9 @@ public class MainActivity extends AppCompatActivity
         //第二个参数为默认值
         String user_id=preferences.getString("user_id", "未登录");
         String name=preferences.getString("name", "华为比赛");
+
+        System.out.println("ooooooo:user_id:"+user_id);
+        System.out.println("ooooooo:name:"+name);
         TextView headUserId= (TextView) findViewById(R.id.head_user_id);
         TextView headUsername= (TextView) findViewById(R.id.head_user_name);
         //System.out.println("uuuuu"+user_id+"|"+headUserId+"|"+headUsername);
@@ -136,16 +141,16 @@ public class MainActivity extends AppCompatActivity
 
         Log.d("lw","进入onNavigation");
         if (id == R.id.my_mood) {
-
+            toMyMoodFragment();
             //为什么不行，可能因为切换后这个类又设置监听去了，但又没有找到设置监听的对象
-            Log.d("lw","R.id.my_mood");
+            //Log.d("lw","R.id.my_mood");
 
-            getSupportActionBar().setTitle("我的心情");
-            FragmentManager fragmentManager= getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            FragmentMyMood fragmentMyMood=new FragmentMyMood();
-            fragmentTransaction.replace(R.id.fragment_container,fragmentMyMood,"my_mood");
-            fragmentTransaction.commit();
+//            getSupportActionBar().setTitle("我的心情");
+//            FragmentManager fragmentManager= getSupportFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            FragmentMyMood fragmentMyMood=new FragmentMyMood();
+//            fragmentTransaction.replace(R.id.fragment_container,fragmentMyMood,"my_mood");
+//            fragmentTransaction.commit();
 
         } else if (id == R.id.mood_road) {
             getSupportActionBar().setTitle("心历路程");
@@ -188,6 +193,15 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void toMyMoodFragment()
+    {
+        getSupportActionBar().setTitle("我的心情");
+        FragmentManager fragmentManager= getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentMyMood fragmentMyMood=new FragmentMyMood();
+        fragmentTransaction.replace(R.id.fragment_container,fragmentMyMood,"my_mood");
+        fragmentTransaction.commit();
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // 当otherActivity中返回数据的时候，会响应此方法
@@ -197,6 +211,16 @@ public class MainActivity extends AppCompatActivity
             Bundle bundle = data.getExtras();
             String user_id = bundle.getString("user_id");
             String name = bundle.getString("name");
+
+
+            //登录成功后共享变量更新
+            SharedPreferences preferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putString("user_id",user_id);
+            editor.putString("name",name);
+            editor.commit();
+
+
             //Log.i(TAG,"onActivityResult: "+ strResult);
             TextView headUserId= (TextView) findViewById(R.id.head_user_id);
             TextView headUsername= (TextView) findViewById(R.id.head_user_name);

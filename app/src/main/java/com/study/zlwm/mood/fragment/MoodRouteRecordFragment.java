@@ -212,7 +212,7 @@ public class MoodRouteRecordFragment extends Fragment {
 
         chartCurve.setCurrentViewport(v);
         //final Viewport maxV=new Viewport(chartCurve.getMaximumViewport());
-        v.right=16;
+        v.right=9;
         chartCurve.setMaximumViewport(v);
 
     }

@@ -20,6 +20,7 @@ import com.study.zlwm.mood.bean.MoodInfo;
 import com.study.zlwm.mood.bean.MoodToColor;
 import com.study.zlwm.mood.bean.MoodToScore;
 import com.study.zlwm.mood.database.SqlDB;
+import com.study.zlwm.mood.global.GlobalInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,11 +43,14 @@ public class MoodRouteStateFragment extends Fragment {
     private PieChartView chartCensus;
     private PieChartData data;
     List<MoodInfo> moodInfoList=new ArrayList<>();
+    private String user_id;
+    private String user_name;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_mood_route_state, container, false);
+        getUserInfo();
 
         return view;
     }
@@ -110,7 +114,7 @@ public class MoodRouteStateFragment extends Fragment {
             Map.Entry entry = (Map.Entry) iter.next();
             String theMood = entry.getKey().toString();
             String theColor = entry.getValue().toString();
-            cursor=db.rawQuery("select count(*) from mood where mood = ?",new String[]{theMood});
+            cursor=db.rawQuery("select count(*) from mood where mood = ? and tel_id= ?",new String[]{theMood,user_id});
             //System.out.println("colors:"+theMood+"|"+theColor);
             cursor.moveToNext();
             count =Integer.parseInt(cursor.getString(0));
@@ -186,6 +190,12 @@ public class MoodRouteStateFragment extends Fragment {
 
         }
 
+    }
+    private void getUserInfo()
+    {
+        GlobalInfo globalInfo= (GlobalInfo) getActivity().getApplication();
+        user_id=globalInfo.getTel_id();
+        user_name=globalInfo.getUsername();
     }
 
 }
