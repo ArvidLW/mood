@@ -70,9 +70,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
     public void setUser() {
+        //共享变量以文件形式，当退出用户时再登录可以看到
         SharedPreferences preferences=getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         //第二个参数为默认值
-        String user_id=preferences.getString("user_id", "指路为码");
+        String user_id=preferences.getString("user_id", "未登录");
         String name=preferences.getString("name", "华为比赛");
         TextView headUserId= (TextView) findViewById(R.id.head_user_id);
         TextView headUsername= (TextView) findViewById(R.id.head_user_name);
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         headUserId.setText(user_id);
         headUsername.setText(name);
 
-        //设置全局变量
+        //设置全局变量，退出应用时就没有了
         GlobalInfo globalInfo= (GlobalInfo) getApplication();
         globalInfo.setTel_id(user_id);
         globalInfo.setUsername(name);
@@ -203,6 +204,7 @@ public class MainActivity extends AppCompatActivity
             headUsername.setText(name);
             Toast.makeText(MainActivity.this, user_id + ":" + name, Toast.LENGTH_SHORT).show();
         }
+        else super.onActivityResult(requestCode,resultCode,data);//不是根activity则分发到fragment
     }
 
 }

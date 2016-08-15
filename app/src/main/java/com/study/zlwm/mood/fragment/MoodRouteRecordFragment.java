@@ -146,7 +146,7 @@ public class MoodRouteRecordFragment extends Fragment {
         List<PointValue> pointValues = new ArrayList<PointValue>();
         for (int j = 0; j < moodDatalist.size(); ++j) {
             pointValues.add(new PointValue(j, moodDatalist.get(j).moodScore));
-            System.out.println("ssssss"+moodDatalist.get(j).moodScore);
+//            System.out.println("ssssss"+moodDatalist.get(j).moodScore);
         }
 
 //        moodDatalist=new ArrayList<>();

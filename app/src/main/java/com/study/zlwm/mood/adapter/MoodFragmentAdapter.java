@@ -20,7 +20,6 @@ public class MoodFragmentAdapter extends FragmentPagerAdapter {
 
         moodcardlist=new ArrayList<>();
         MoodCardInfo moodInfo;
-        //System.out.println("eeeeeeeee:"+moodcardinfolist.size());
         for(int i=0; i< moodcardinfolist.size();++i)
         {
 
