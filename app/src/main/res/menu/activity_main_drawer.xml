@@ -18,6 +18,10 @@
             android:id="@+id/good_mood"
             android:icon="@drawable/ic_menu_good_mood"
             android:title="心情圈" />
+        <item
+            android:id="@+id/mood_rainbow"
+            android:title="彩虹卡"
+            android:icon="@drawable/ic_menu_rainbow"/>
     </group>
 
 
